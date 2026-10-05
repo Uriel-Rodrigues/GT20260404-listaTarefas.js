@@ -1,0 +1,1 @@
+# GT20260404-listaTarefas.js
