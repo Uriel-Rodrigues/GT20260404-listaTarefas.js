@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista de tarefas</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+<body>
+    <header class="flex justify-between items-center py-4 px-15 bg-purple-600">
+        <input type="text" placeholder="pesquisar" class="w-100 h-10 pl-4 rounded bg-white"/>
+        <button class="leading-10 bg-purple-800 rounded px-4 font-black text-white duration-200 hover:bg-purple-400 hover:text-black cursor-pointer">Nova tarefa</button>
+    </header>
+    <main class="p-15 bg-slate-200">
+        <h1 class="text-3xl font-bold mb-6">Tarefas</h1>
+        <div id="tarefas" class="grid grid-cols-3 gap-4">
+            <div class="bg-white p-4 rounded-lg">
+                <h3 class="font-bold mb-4">titulo card</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!</p>
+            </div>
+        </div>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
+
+implementar função de busca 
+implementar botão nova tarefa quando clicar no botão nova terefa abrir tela para criar nova tarefa com titulo e area de texto 
