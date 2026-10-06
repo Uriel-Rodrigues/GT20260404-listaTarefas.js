@@ -1,10 +1,24 @@
-let tarefas = [
-    {titulo:"cortar a grama", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
-    {titulo:"compras", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
-    {titulo:"veterinario", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
-    {titulo:"almoço", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}]
+ let tarefas = [
+     {titulo:"cortar a grama", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
+     {titulo:"compras", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
+     {titulo:"veterinario", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
+     {titulo:"almoço", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}]
+
+// let tarefas = []
 
 let cards = document.querySelector("#cards")
+
+// function buscarTarefas(){
+//     fetch("https://js-lista-de-tarefas-api.onrender.com/tarefas", {
+//         method: "get",
+//         headers: {"Content-type":"application/json"}
+//     })
+//     .then((response) => {return response.json()})
+//     .then((json) => {
+//         tarefas = json
+//         pegarTarefas(tarefas)
+//     })
+// }
 
 function pegarTarefas(tarefas){
     cards.innerHTML = ''
@@ -21,7 +35,7 @@ function pegarTarefas(tarefas){
 
 pegarTarefas(tarefas)
 
-function buscarTarefa(texto){
+function procurarTarefa(texto){
     if(texto.length == 0){
         pegarTarefas(tarefas)
     }else if (texto.length >=3){
@@ -49,4 +63,31 @@ function fundoEscuro(){
     tarefa.classList.add("hidden")
 }
 
+function criarTarefas(){
+    
+    event.preventDefault()
 
+    let titulo = document.querySelector("#tirulo").value;
+    let conteudo = document.querySelector("#conteudo").value;
+
+    let dados = {
+        titulo: titulo,
+        descricao: conteudo
+    }
+
+    fetch("https://js-lista-de-tarefas-api.onrender.com/tarefas",{
+        method:"post",
+        headers: {"Content-type": "application/json"},
+        body: JSON.stringify(dados)
+    })
+    .then((response) => {return response.json()})
+    .then((json) => {
+        if (json.tipo == "error"){
+            alert(json.mensagem)
+        }
+        alert(json.mensagem)
+    })
+    .catch(error => {
+        alert(error.message)
+    })
+}
