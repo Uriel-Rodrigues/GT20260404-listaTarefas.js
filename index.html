@@ -8,34 +8,20 @@
 
 </head>
 
-<body>
+<body class="bg-slate-200 h-screen flex justify-center items-center">
+    <div class="bg-white shadow-lg rounded-lg p-4">
+        <h1 class="font-bold text-xl mb-6">Seja bem vindo(a)!</h1>
+        <form class="flex flex-col w-80">
+            <label for="email" class="uppercase text-xs font-bold mb-2 block">Email</label>
+            <input type="text" placeholder="seu email" class="pl-3 h-10 border-2 border-slate-400 focus:border-purple-600 duration-150 rounded outline-none mb-4" required>
+            <label for="email" class="uppercase text-xs font-bold mb-2 block">Senha</label>
+            <input type="text" placeholder="sua senha" class="pl-3 h-10 border-2 border-slate-400 focus:border-purple-600 duration-150 rounded outline-none mb-4" required>
+            <a href="/cadastrar.html" class="my-5">Cadastre-se</a>
+            <button class="cursor-pointer w-full h-10 rounded bg-purple-400 hover:bg-purple-600 duration-200 hover:text-white font-bold">Logar</button>
 
-    <header class="flex justify-between items-center py-4 px-15 bg-purple-600">
-        <input onkeyup="buscarTarefa(event.target.value)" type="text" placeholder="pesquisar" class="w-100 h-10 pl-4 rounded bg-white"/>
-        <button onclick="novaTarefa(event.target)" class="leading-10 bg-purple-800 rounded px-4 font-black text-white duration-200 hover:bg-purple-400 hover:text-black cursor-pointer">Nova tarefa</button>
-    </header>
-
-    <main class="p-15 bg-slate-200 h-screen">
-        <h1 class="text-3xl font-bold mb-6">Tarefas</h1>
-        <div id="cards" class="grid grid-cols-3 gap-4">
-            <!-- <div class="bg-white p-4 rounded-lg">
-                <h3 class="font-bold mb-4">titulo card</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!</p>
-            </div> -->
-        </div>
-
-        <div id="escuro" onclick="fundoEscuro()" class=" hidden fixed inset-0 z-40 bg-black/60"></div>
-        <form id="tarefa" class=" hidden fixed inset-0 z-50 m-auto flex flex-col gap-5 justify-center items-center p-4 rounded-lg bg-purple-800 w-120 h-100" >
-            <h1 class="text-white font-bold text-2xl">Criar nova tarefa</h1>
-            <input id="titulo" type="text" class=" w-100 h-10 pl-4 rounded bg-white" placeholder="Nome da tarefa">
-            <textarea itemid="conteudo" name="" id="" class="w-100 h-50 pl-4 rounded bg-white"></textarea>
-            <button type="submit" class=" w-100 leading-10 bg-purple-500 rounded px-4 font-black text-white duration-200 hover:bg-purple-400 hover:text-black cursor-pointer">criar</button>
         </form>
 
-    </main>
-    <script src="index.js"></script>
+    </div>
+    
 </body>
 </html>
-
-<!-- implementar função de busca 
-implementar botão nova tarefa quando clicar no botão nova terefa abrir tela para criar nova tarefa com titulo e area de texto  -->
