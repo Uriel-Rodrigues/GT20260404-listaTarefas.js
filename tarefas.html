@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lista de tarefas</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
 
 </head>
 
@@ -27,8 +29,10 @@
         <div id="escuro" onclick="fundoEscuro()" class=" hidden fixed inset-0 z-40 bg-black/60"></div>
 
         <form onsubmit="criarTarefas()" id="tarefa" class=" hidden fixed inset-0 z-50 m-auto flex flex-col gap-5 justify-center items-center p-4 rounded-lg bg-purple-800 w-120 h-100" >
-            
-            <h1 class="text-white font-bold text-2xl">Criar nova tarefa</h1>
+            <div class="flex justify-between w-full">
+                <h1 class="text-white font-bold text-2xl">Criar nova tarefa</h1>
+                <box-icon name='x' class="cursor-pointer fill-white w-10 h-10" onclick="fundoEscuro()"></box-icon>
+            </div>
 
             <input id="titulo" type="text" class=" w-100 h-10 pl-4 rounded bg-white" placeholder="Titulo da tarefa">
 

@@ -8,7 +8,7 @@ let tarefas = []
 
 let cards = document.querySelector("#cards")
 
- function buscarTarefas(){
+function buscarTarefas(){
 
     try {
 
@@ -32,27 +32,28 @@ let cards = document.querySelector("#cards")
         })
         
     } catch (error) {
-        
+            alert("Error:", error.message)
     }
- }
+}
 
- buscarTarefas()
+buscarTarefas()
 
 function pegarTarefas(tarefas){
-
-    let cards = document.querySelector("#cards")
+    cards.innerHTML = ""
 
     if (tarefas.length == 0) {
         cards.innerHTML = `<h3 class="font-bold mb-4">você ainda não tem tarefas clique em "nova tarefa"</h3>`
     }
-    
-    cards.innerHTML = ''
     tarefas.map((tarefa) => {
         cards.innerHTML += 
         `
             <div class="bg-white p-4 rounded-lg">
                 <h3 class="font-bold mb-4">${tarefa.titulo}</h3>
-                <p>${tarefa.conteudo}</p>
+                <p>${tarefa.descricao}</p>
+                <div class="flex justify-end gap-3">
+                    <box-icon class="cursor-pointer hover:fill-purple-500" name='pencil' ></box-icon>
+                    <box-icon onclick="deletarTarefa(${tarefa.id})" class="cursor-pointer hover:fill-purple-500" name='trash' ></box-icon>
+                </div>
             </div>
         `
     })
@@ -88,35 +89,53 @@ function fundoEscuro(){
     tarefa.classList.add("hidden")
 }
 
+
 function criarTarefas(){
+    event.preventDefault();
+    try {
+        let usuario = JSON.parse(sessionStorage.getItem("usuario"))
     
-    event.preventDefault()
-
-    let usuario = JSON.parse(sessionStorage.getItem("usuario"))
-
-    let titulo = document.querySelector("#tirulo").value;
-    let conteudo = document.querySelector("#conteudo").value;
-
-    let dados = {
-        titulo: titulo,
-        descricao: conteudo,
-        usuario_id: usuario.id
+        let titulo = document.querySelector("#titulo").value;
+        let conteudo = document.querySelector("#conteudo").value;
+    
+        let dados = {
+            titulo: titulo,
+            descricao: conteudo,
+            usuario_id: usuario.id
         
-    }
-
-    fetch(`https://js-lista-de-tarefas-api.onrender.com/tarefas/${usuario.id}`,{
-        method:"post",
-        headers: {"Content-type": "application/json"},
-        body: JSON.stringify(dados)
-    })
-    .then((response) => {return response.json()})
-    .then((json) => {
-        if (json.tipo == "error"){
-            alert(json.mensagem)
         }
-        alert(json.mensagem)
-    })
-    .catch(error => {
-        alert(error.message)
-    })
+    
+        fetch(`https://js-lista-de-tarefas-api.onrender.com/tarefas`,{
+            method:"post",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(dados)
+        })
+        .then((response) => {return response.json()})
+        .then((json) => {
+            if (json.tipo == "warning"){
+                alert(json.mensagem)
+            }
+            alert(json.mensagem)
+            fundoEscuro()
+            buscarTarefas()
+
+        })
+        
+    } catch (error) {
+        alert("Error:", error.message)
+    }
+}
+
+function deletarTarefa(id){
+    if(confirm("deseja realmente deletar")){
+         fetch(`https://js-lista-de-tarefas-api.onrender.com/tarefas/${id}`, {
+            method: "delete",
+            headers: {"Content-type":"application/json"}
+        })
+        .then((response) => {return response.json()})
+        .then((json) => {
+            alert(json.mensagem)   
+            buscarTarefas()
+        })
+    }
 }
