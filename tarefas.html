@@ -26,9 +26,32 @@
             </div> -->
         </div>
 
-        <div id="escuro" onclick="fundoEscuro()" class=" hidden fixed inset-0 z-40 bg-black/60"></div>
+        <div id="escuro" onclick="fundoEscuro()" class=" opacity-0 invisible duration-200 delay-200 fixed inset-0 z-40 bg-black/60"></div>
 
-        <form onsubmit="criarTarefas()" id="tarefa" class=" hidden fixed inset-0 z-50 m-auto flex flex-col gap-5 justify-center items-center p-4 rounded-lg bg-purple-800 w-120 h-100" >
+        <div id="editarTrefa" class="w-100 p-4 rounded-lg bg-purple-800 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 invisible duration-200 delay-200 z-50">
+            
+            <div class="flex justify-between font-bold mb-2">
+                <h1 class="text-white font-bold text-2xl">Editar tarefa</h1>
+                <box-icon name='x' onclick="fundoEscuro()" class="cursor-pointer fill-white w-10 h-10"></box-icon>
+            </div>
+            
+            <form onsubmit="editarTarefa()" class="flex flex-col">
+                <label for="titulo" class="text-white uppercase text-xs font-bold mb-2 block">Titulo</label>
+                <input id="tituloEditado" type="text" placeholder="Titulo da tarefa"
+                    class="pl-3 h-10 border-2 bg-white border-slate-400 focus:border-purple-600 duration-150 rounded outline-none mb-4"
+                    required />
+                <label for="descricao" class="text-white uppercase text-xs font-bold mb-2 block">Descrição</label>
+                <textarea
+                    id="descricao"
+                    class="pl-3 h-30 border-2 bg-white border-slate-400 focus:border-purple-600 duration-150 rounded outline-none mb-4"
+                    required></textarea>
+                <button type="submit"
+                    class="cursor-pointer w-full h-10 rounded bg-purple-500 hover:bg-purple-400 duration-200 hover:text-white font-bold">Criar</button>
+            </form>
+        </div>
+
+        <form onsubmit="criarTarefas()" id="tarefa" class=" opacity-0 invisible duration-200 delay-200 fixed inset-0 z-50 m-auto flex flex-col gap-5 justify-center items-center p-4 rounded-lg bg-purple-800 w-120 h-100" >
+
             <div class="flex justify-between w-full">
                 <h1 class="text-white font-bold text-2xl">Criar nova tarefa</h1>
                 <box-icon name='x' class="cursor-pointer fill-white w-10 h-10" onclick="fundoEscuro()"></box-icon>
