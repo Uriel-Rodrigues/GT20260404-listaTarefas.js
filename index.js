@@ -1,14 +1,9 @@
-//  let tarefas = [
-//      {titulo:"cortar a grama", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
-//      {titulo:"compras", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
-//      {titulo:"veterinario", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}, 
-//      {titulo:"almoço", conteudo:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, enim! Porro iure, repellendus fugit fuga libero dignissimos sunt eos quasi quisquam incidunt quis nesciunt inventore illum rerum ad, est cum!"}]
-
 let tarefas = []
 
 let idEditandoTarefa = null
 
 let cards = document.querySelector("#cards")
+
 
 // listar as tarefas cadastradas
 function buscarTarefas(){
@@ -92,9 +87,10 @@ function deletarTarefa(id){
     }
 }
 
+
 function editarTarefa(){
     event.preventDefault()
-
+    
     try {
 
         let usuario = JSON.parse(sessionStorage.getItem("usuario"))
@@ -164,16 +160,26 @@ function procurarTarefa(texto){
         })
         pegarTarefas(tarefaFiltrada)
     }
-
+    
 }
 
-//formulario editar tarefa
+//abrir formulario editar tarefa e carregar valores nos campos  
 function formeditarTarefa(id){
+
+    let tarefaEncontrada = tarefas.find(tarefa => tarefa.id === id)
     
     idEditandoTarefa = id
-    console.log(idEditandoTarefa)
+        
     let escuro = document.querySelector("#escuro")
     let editarTrefa = document.querySelector("#editarTrefa")
+
+    let idEdicao = document.querySelector("#idEdicao")
+    let tituloEditado = document.querySelector("#tituloEditado")
+    let descricao = document.querySelector("#descricao")
+
+    idEdicao.value = tarefaEncontrada.id
+    tituloEditado.value = tarefaEncontrada.titulo
+    descricao.value = tarefaEncontrada.descricao
 
     escuro.classList.remove("opacity-0", "invisible")
     editarTrefa.classList.remove("opacity-0", "invisible")
